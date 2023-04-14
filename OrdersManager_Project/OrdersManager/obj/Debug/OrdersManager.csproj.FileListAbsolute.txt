@@ -1,0 +1,10 @@
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\bin\Debug\OrdersManager.exe.config
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\bin\Debug\OrdersManager.exe
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\bin\Debug\OrdersManager.pdb
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\obj\Debug\OrdersManager.csproj.AssemblyReference.cache
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\obj\Debug\OrdersManager.MainForm.resources
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\obj\Debug\OrdersManager.Properties.Resources.resources
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\obj\Debug\OrdersManager.csproj.GenerateResource.cache
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\obj\Debug\OrdersManager.csproj.CoreCompileInputs.cache
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\obj\Debug\OrdersManager.exe
+C:\Users\mmonahov\source\repos\OrdersManager\OrdersManager\obj\Debug\OrdersManager.pdb
