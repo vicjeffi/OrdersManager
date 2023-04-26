@@ -34,7 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_selectedOrder = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label_selectedOrderPrice = new System.Windows.Forms.Label();
             this.panel_clientManagement = new System.Windows.Forms.Panel();
@@ -42,7 +42,7 @@
             this.button_clientRemove = new System.Windows.Forms.Button();
             this.button_clientEdit = new System.Windows.Forms.Button();
             this.button_clientNew = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel_orderManagement = new System.Windows.Forms.Panel();
             this.button_orderCompletedList = new System.Windows.Forms.Button();
             this.button_orderListSave = new System.Windows.Forms.Button();
             this.button_orderPrint = new System.Windows.Forms.Button();
@@ -52,9 +52,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_actionReset = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_selectedOrder)).BeginInit();
             this.panel_clientManagement.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panel_orderManagement.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox_clients
@@ -64,6 +64,7 @@
             this.listBox_clients.Name = "listBox_clients";
             this.listBox_clients.Size = new System.Drawing.Size(205, 225);
             this.listBox_clients.TabIndex = 0;
+            this.listBox_clients.SelectedIndexChanged += new System.EventHandler(this.listBox_clients_SelectedIndexChanged);
             // 
             // listBox_orders
             // 
@@ -72,6 +73,7 @@
             this.listBox_orders.Name = "listBox_orders";
             this.listBox_orders.Size = new System.Drawing.Size(205, 225);
             this.listBox_orders.TabIndex = 1;
+            this.listBox_orders.SelectedIndexChanged += new System.EventHandler(this.listBox_orders_SelectedIndexChanged);
             // 
             // listBox_actions
             // 
@@ -115,15 +117,18 @@
             this.label3.Text = "Статус состояния";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dataGridView1
+            // dataGridView_selectedOrder
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 283);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(429, 210);
-            this.dataGridView1.TabIndex = 6;
+            this.dataGridView_selectedOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_selectedOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_selectedOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_selectedOrder.Location = new System.Drawing.Point(12, 283);
+            this.dataGridView_selectedOrder.Name = "dataGridView_selectedOrder";
+            this.dataGridView_selectedOrder.Size = new System.Drawing.Size(429, 210);
+            this.dataGridView_selectedOrder.TabIndex = 6;
+            this.dataGridView_selectedOrder.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView_selectedOrder_UserAddedRow);
             // 
             // label4
             // 
@@ -138,7 +143,7 @@
             // 
             // label_selectedOrderPrice
             // 
-            this.label_selectedOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label_selectedOrderPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_selectedOrderPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label_selectedOrderPrice.Location = new System.Drawing.Point(236, 496);
             this.label_selectedOrderPrice.Name = "label_selectedOrderPrice";
@@ -149,8 +154,7 @@
             // 
             // panel_clientManagement
             // 
-            this.panel_clientManagement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_clientManagement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_clientManagement.Controls.Add(this.button_clientListSave);
             this.panel_clientManagement.Controls.Add(this.button_clientRemove);
             this.panel_clientManagement.Controls.Add(this.button_clientEdit);
@@ -168,7 +172,7 @@
             this.button_clientListSave.TabIndex = 3;
             this.button_clientListSave.Text = "Сохранить список клиентов";
             this.button_clientListSave.UseVisualStyleBackColor = true;
-            this.button_clientListSave.Click += new System.EventHandler(ClientButtons.button_clientListSave_Click);
+            this.button_clientListSave.Click += new System.EventHandler(this.button_clientListSave_Click);
             // 
             // button_clientRemove
             // 
@@ -179,19 +183,18 @@
             this.button_clientRemove.TabIndex = 2;
             this.button_clientRemove.Text = "Удалить клиента";
             this.button_clientRemove.UseVisualStyleBackColor = true;
-            this.button_clientRemove.Click += new System.EventHandler(ClientButtons.button_clientRemove_Click);
+            this.button_clientRemove.Click += new System.EventHandler(this.button_clientRemove_Click);
             // 
             // button_clientEdit
             // 
-            this.button_clientEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_clientEdit.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button_clientEdit.Location = new System.Drawing.Point(147, 9);
             this.button_clientEdit.Name = "button_clientEdit";
             this.button_clientEdit.Size = new System.Drawing.Size(231, 23);
             this.button_clientEdit.TabIndex = 1;
             this.button_clientEdit.Text = "Редактировать клиента";
             this.button_clientEdit.UseVisualStyleBackColor = true;
-            this.button_clientEdit.Click += new System.EventHandler(ClientButtons.button_clientEdit_Click);
+            this.button_clientEdit.Click += new System.EventHandler(this.button_clientEdit_Click);
             // 
             // button_clientNew
             // 
@@ -201,22 +204,20 @@
             this.button_clientNew.TabIndex = 0;
             this.button_clientNew.Text = "Новый клиент";
             this.button_clientNew.UseVisualStyleBackColor = true;
-            this.button_clientNew.Click += new System.EventHandler(ClientButtons.button_clientNew_Click);
+            this.button_clientNew.Click += new System.EventHandler(this.button_clientNew_Click);
             // 
-            // panel1
+            // panel_orderManagement
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.button_orderCompletedList);
-            this.panel1.Controls.Add(this.button_orderListSave);
-            this.panel1.Controls.Add(this.button_orderPrint);
-            this.panel1.Controls.Add(this.button_orderDelete);
-            this.panel1.Controls.Add(this.button_orderNew);
-            this.panel1.Location = new System.Drawing.Point(471, 372);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(530, 67);
-            this.panel1.TabIndex = 10;
+            this.panel_orderManagement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_orderManagement.Controls.Add(this.button_orderCompletedList);
+            this.panel_orderManagement.Controls.Add(this.button_orderListSave);
+            this.panel_orderManagement.Controls.Add(this.button_orderPrint);
+            this.panel_orderManagement.Controls.Add(this.button_orderDelete);
+            this.panel_orderManagement.Controls.Add(this.button_orderNew);
+            this.panel_orderManagement.Location = new System.Drawing.Point(471, 372);
+            this.panel_orderManagement.Name = "panel_orderManagement";
+            this.panel_orderManagement.Size = new System.Drawing.Size(530, 67);
+            this.panel_orderManagement.TabIndex = 10;
             // 
             // button_orderCompletedList
             // 
@@ -227,7 +228,7 @@
             this.button_orderCompletedList.TabIndex = 8;
             this.button_orderCompletedList.Text = "Список готовых заказов";
             this.button_orderCompletedList.UseVisualStyleBackColor = true;
-            this.button_orderCompletedList.Click += new System.EventHandler(OrderButtons.button_orderCompletedList_Click);
+            this.button_orderCompletedList.Click += new System.EventHandler(this.button_orderCompletedList_Click);
             // 
             // button_orderListSave
             // 
@@ -236,9 +237,9 @@
             this.button_orderListSave.Name = "button_orderListSave";
             this.button_orderListSave.Size = new System.Drawing.Size(253, 23);
             this.button_orderListSave.TabIndex = 7;
-            this.button_orderListSave.Text = "Сохранить сисок заказов";
+            this.button_orderListSave.Text = "Поменять статус заказа";
             this.button_orderListSave.UseVisualStyleBackColor = true;
-            this.button_orderListSave.Click += new System.EventHandler(OrderButtons.button_orderListSave_Click);
+            this.button_orderListSave.Click += new System.EventHandler(this.button_orderListSave_Click);
             // 
             // button_orderPrint
             // 
@@ -247,21 +248,20 @@
             this.button_orderPrint.Name = "button_orderPrint";
             this.button_orderPrint.Size = new System.Drawing.Size(151, 23);
             this.button_orderPrint.TabIndex = 6;
-            this.button_orderPrint.Text = "Печать заказа";
+            this.button_orderPrint.Text = "Печать заказов";
             this.button_orderPrint.UseVisualStyleBackColor = true;
-            this.button_orderPrint.Click += new System.EventHandler(OrderButtons.button_orderPrint_Click);
+            this.button_orderPrint.Click += new System.EventHandler(this.button_orderPrint_Click);
             // 
             // button_orderDelete
             // 
-            this.button_orderDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_orderDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.button_orderDelete.Location = new System.Drawing.Point(147, 10);
             this.button_orderDelete.Name = "button_orderDelete";
             this.button_orderDelete.Size = new System.Drawing.Size(223, 23);
             this.button_orderDelete.TabIndex = 5;
             this.button_orderDelete.Text = "Удалить заказ";
             this.button_orderDelete.UseVisualStyleBackColor = true;
-            this.button_orderDelete.Click += new System.EventHandler(OrderButtons.button_orderDelete_Click);
+            this.button_orderDelete.Click += new System.EventHandler(this.button_orderDelete_Click);
             // 
             // button_orderNew
             // 
@@ -271,12 +271,11 @@
             this.button_orderNew.TabIndex = 4;
             this.button_orderNew.Text = "Новый заказ";
             this.button_orderNew.UseVisualStyleBackColor = true;
-            this.button_orderNew.Click += new System.EventHandler(OrderButtons.button_orderNew_Click);
+            this.button_orderNew.Click += new System.EventHandler(this.button_orderNew_Click);
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(483, 276);
             this.label5.Name = "label5";
@@ -286,9 +285,7 @@
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(483, 366);
             this.label6.Name = "label6";
@@ -305,6 +302,7 @@
             this.button_exit.TabIndex = 13;
             this.button_exit.Text = "Выход";
             this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // button_actionReset
             // 
@@ -315,6 +313,7 @@
             this.button_actionReset.TabIndex = 14;
             this.button_actionReset.Text = "Сброс состояний";
             this.button_actionReset.UseVisualStyleBackColor = true;
+            this.button_actionReset.Click += new System.EventHandler(this.button_actionReset_Click);
             // 
             // MainForm
             // 
@@ -325,11 +324,11 @@
             this.Controls.Add(this.button_exit);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel_orderManagement);
             this.Controls.Add(this.panel_clientManagement);
             this.Controls.Add(this.label_selectedOrderPrice);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView_selectedOrder);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -339,9 +338,9 @@
             this.MinimumSize = new System.Drawing.Size(1029, 568);
             this.Name = "MainForm";
             this.Text = "Программа управления заказами";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_selectedOrder)).EndInit();
             this.panel_clientManagement.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.panel_orderManagement.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,7 +354,7 @@
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView_selectedOrder;
         protected System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label_selectedOrderPrice;
         private System.Windows.Forms.Panel panel_clientManagement;
@@ -363,7 +362,7 @@
         private System.Windows.Forms.Button button_clientRemove;
         private System.Windows.Forms.Button button_clientEdit;
         private System.Windows.Forms.Button button_clientNew;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel_orderManagement;
         private System.Windows.Forms.Button button_orderCompletedList;
         private System.Windows.Forms.Button button_orderListSave;
         private System.Windows.Forms.Button button_orderPrint;

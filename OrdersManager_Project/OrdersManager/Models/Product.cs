@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace OrdersManager.Models
 {
-    abstract class Product
+    public class Product
     {
+        private int _count;
         private string _name;
         private float _price;
         public string Name
@@ -20,13 +21,26 @@ namespace OrdersManager.Models
             get { return _price; ; }
             set { _price = value; }
         }
+        public int Count
+        {
+            get { return _count; }
+            set { _count = value; }
+        }
+        public float TotalPrice
+        {
+            get { return _count * _price; }
+        }
         public Product()
         {
-            _name = "None"; _price = 0;
+            _name = "None"; _price = 50; Count = 1;
         }
-        public Product(string name, float price)
+        public Product(string name, float price, int count)
         {
-            _name = name; _price = price;
+            _name = name; _price = price; Count = count;
+        }
+        public override string ToString()
+        {
+            return Name + $" в колличестве {Count} шт.";
         }
     }
 }
