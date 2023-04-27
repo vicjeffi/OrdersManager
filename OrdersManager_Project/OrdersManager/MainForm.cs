@@ -169,6 +169,7 @@ namespace OrdersManager
                     DialogResult result = MessageBox.Show("Вы точно хотите удалить этого клиента? \nОтмена, чтобы убрать это оповещение и удалить клиента", "Подтвердите действие", MessageBoxButtons.YesNoCancel);
                     if (result == DialogResult.Yes)
                     {
+                        orders.Clear();
                         clients.Remove((Customer)listBox_clients.SelectedItem);
                         listBox_clients.SelectedItem = null;
 
@@ -181,6 +182,7 @@ namespace OrdersManager
                     else if (result == DialogResult.Cancel)
                     {
                         ShowingDialog = false;
+                        orders.Clear();
                         clients.Remove((Customer)listBox_clients.SelectedItem);
                         listBox_clients.SelectedItem = null;
 
