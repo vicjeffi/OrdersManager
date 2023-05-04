@@ -10,13 +10,14 @@ namespace OrdersManager.Models
 {
     public class Order
     {
+
         private BindingList<Product> _products;
         private DateTime _time;
         private bool isComplited = false;
         public BindingList<Product> Products
         {
             get { return _products; }
-            set { _products = value;}
+            set { _products = value; }
         }
         public DateTime CreationTime
         {

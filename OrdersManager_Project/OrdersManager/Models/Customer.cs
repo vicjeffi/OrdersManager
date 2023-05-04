@@ -11,7 +11,6 @@ namespace OrdersManager.Models
     public class Customer : ICloneable, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public event AccountHandler Notify;
         private string _firstName;
         private string _lastName;
         private string _fatherName;

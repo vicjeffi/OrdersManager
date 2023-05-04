@@ -30,11 +30,11 @@
         {
             this.label5 = new System.Windows.Forms.Label();
             this.panel_clientManagement = new System.Windows.Forms.Panel();
+            this.button_cancelEdit = new System.Windows.Forms.Button();
+            this.button_comleteEdit = new System.Windows.Forms.Button();
             this.lastName_textBox = new System.Windows.Forms.TextBox();
             this.middleName_textBox = new System.Windows.Forms.TextBox();
             this.firstName_textBox = new System.Windows.Forms.TextBox();
-            this.button_comleteEdit = new System.Windows.Forms.Button();
-            this.button_cancelEdit = new System.Windows.Forms.Button();
             this.panel_clientManagement.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +64,26 @@
             this.panel_clientManagement.Size = new System.Drawing.Size(343, 70);
             this.panel_clientManagement.TabIndex = 12;
             // 
+            // button_cancelEdit
+            // 
+            this.button_cancelEdit.Location = new System.Drawing.Point(166, 35);
+            this.button_cancelEdit.Name = "button_cancelEdit";
+            this.button_cancelEdit.Size = new System.Drawing.Size(80, 23);
+            this.button_cancelEdit.TabIndex = 4;
+            this.button_cancelEdit.Text = "Отмена";
+            this.button_cancelEdit.UseVisualStyleBackColor = true;
+            this.button_cancelEdit.Click += new System.EventHandler(this.button_cancelEdit_Click);
+            // 
+            // button_comleteEdit
+            // 
+            this.button_comleteEdit.Location = new System.Drawing.Point(252, 35);
+            this.button_comleteEdit.Name = "button_comleteEdit";
+            this.button_comleteEdit.Size = new System.Drawing.Size(75, 23);
+            this.button_comleteEdit.TabIndex = 3;
+            this.button_comleteEdit.Text = "ОК";
+            this.button_comleteEdit.UseVisualStyleBackColor = true;
+            this.button_comleteEdit.Click += new System.EventHandler(this.button_comleteEdit_Click);
+            // 
             // lastName_textBox
             // 
             this.lastName_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -87,26 +107,6 @@
             this.firstName_textBox.Size = new System.Drawing.Size(100, 20);
             this.firstName_textBox.TabIndex = 0;
             // 
-            // button_comleteEdit
-            // 
-            this.button_comleteEdit.Location = new System.Drawing.Point(252, 35);
-            this.button_comleteEdit.Name = "button_comleteEdit";
-            this.button_comleteEdit.Size = new System.Drawing.Size(75, 23);
-            this.button_comleteEdit.TabIndex = 3;
-            this.button_comleteEdit.Text = "ОК";
-            this.button_comleteEdit.UseVisualStyleBackColor = true;
-            this.button_comleteEdit.Click += new System.EventHandler(this.button_comleteEdit_Click);
-            // 
-            // button_cancelEdit
-            // 
-            this.button_cancelEdit.Location = new System.Drawing.Point(166, 35);
-            this.button_cancelEdit.Name = "button_cancelEdit";
-            this.button_cancelEdit.Size = new System.Drawing.Size(80, 23);
-            this.button_cancelEdit.TabIndex = 4;
-            this.button_cancelEdit.Text = "Отмена";
-            this.button_cancelEdit.UseVisualStyleBackColor = true;
-            this.button_cancelEdit.Click += new System.EventHandler(this.button_cancelEdit_Click);
-            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,6 +118,7 @@
             this.Name = "CustomerForm";
             this.Text = "CustomerForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomerForm_FormClosing);
+            this.Load += new System.EventHandler(this.CustomerForm_Load);
             this.panel_clientManagement.ResumeLayout(false);
             this.panel_clientManagement.PerformLayout();
             this.ResumeLayout(false);

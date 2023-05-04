@@ -62,7 +62,7 @@ namespace OrdersManager
 
             ClientsBinding = new BindingSource(clients, null);
             OrdersBinding = new BindingSource(orders, null);
-            ProductsBinding = new BindingSource(products, null);
+            ProductsBinding = new BindingSource(null, null);
             ActionBinding = new BindingSource(actions, null);
 
             InitializeComponent();
@@ -112,6 +112,7 @@ namespace OrdersManager
         private void BindLists()
         {
             listBox_clients.DataSource = ClientsBinding; listBox_orders.DataSource = OrdersBinding; dataGridView_selectedOrder.DataSource = ProductsBinding; listBox_actions.DataSource = ActionBinding;
+            //label_selectedOrderPrice.DataBindings.Add("Text", this, "SelectedOrderTotalPrice", true, DataSourceUpdateMode.OnPropertyChanged);
             label_selectedOrderPrice.DataBindings.Add("Text", this, "SelectedOrderTotalPrice", true, DataSourceUpdateMode.OnPropertyChanged);
         }
         public void LoadFileData()
@@ -207,6 +208,11 @@ namespace OrdersManager
 
         private void button_clientListSave_Click(object sender, EventArgs e)
         {
+            SaveData();
+        }
+
+        private void SaveData()
+        {
             Notify?.Invoke($"Выгрузка локальных данных");
             var opt = new JsonSerializerOptions() { WriteIndented = true };
             string strJson = JsonSerializer.Serialize(clients, opt);
@@ -215,8 +221,8 @@ namespace OrdersManager
             {
                 File.WriteAllText(myDocumentsPath + @"\" + typeof(MainForm).Namespace + @"\" + "data.txt", strJson);
             }
+            isSomethingChanged = false;
         }
-
         private void button_orderNew_Click(object sender, EventArgs e)
         {
             if (SelectedClient != null)
@@ -370,7 +376,19 @@ namespace OrdersManager
 
         private void button_exit_Click(object sender, EventArgs e)
         {
-            Close();
+            if(!isSomethingChanged)
+                Close();
+            else
+            {
+                var result = MessageBox.Show("Сохранить изменения?", "Подтвердите измения", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    SaveData();
+                    Close();
+                }
+                else
+                    Close();
+            }
         }
 
         //https://stackoverflow.com/questions/3147043/bind-a-label-to-a-variable

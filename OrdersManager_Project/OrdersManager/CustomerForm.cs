@@ -95,5 +95,10 @@ namespace OrdersManager
                     break;
             }
         }
+
+        private void CustomerForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

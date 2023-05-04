@@ -68,11 +68,11 @@ namespace OrdersManager
             float topMargin = ev.MarginBounds.Top;
             string line = null;
 
-            // Calculate the number of lines per page.
+            // Расчет требуемых страниц
             linesPerPage = ev.MarginBounds.Height /
                printFont.GetHeight(ev.Graphics);
 
-            // Print each line of the file.
+            // Добавление строк из файла
             while (count < linesPerPage &&
                ((line = streamToPrint.ReadLine()) != null))
             {
